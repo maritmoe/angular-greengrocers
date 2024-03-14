@@ -1,10 +1,22 @@
-<ng-template ngIf="items; else elseblock">
-  <label for="filter">Filter: </label>
-  <select #filter (change)="updateFilterBy(filter.value)">
-    <option value="all">Show all</option>
-    <option value="fruit">Fruits</option>
-    <option value="vegetable">Vegetables</option>
-  </select>
+<ng-template ngIf="items">
+  <div class="filter-sort">
+    <!-- Code to choose filter type -->
+    <label for="filter">Filter: </label>
+    <select #filter (change)="updateFilterBy(filter.value)">
+      <option value="all">Show all</option>
+      <option value="fruit">Fruits</option>
+      <option value="vegetable">Vegetables</option>
+    </select>
+    <!-- Code to choose sort type -->
+    <label for="sort">Sort by: </label>
+    <select #sort (change)="updateSortBy(sort.value)">
+      <option value="none">None</option>
+      <option value="priceLow">Lowest to highest price</option>
+      <option value="priceHigh">Highest to lowest price</option>
+      <option value="name">Name alphabetic</option>
+    </select>
+  </div>
+  <!-- List of groceries in store -->
   <ul class="item-list store--item-list">
     <app-store-item
       *ngFor="let item of filteredItems | async"
@@ -13,6 +25,3 @@
     ></app-store-item>
   </ul>
 </ng-template>
-<ng-template #elseblock
-  ><h2>Something went wrong when loading.</h2></ng-template
->
