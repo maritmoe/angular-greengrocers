@@ -1,0 +1,12 @@
+<ng-template ngIf="items; else elseblock">
+  <ul class="item-list store--item-list">
+    <app-store-item
+      *ngFor="let item of items | async"
+      [item]="item"
+      (add)="addItemToCart($event)"
+    ></app-store-item>
+  </ul>
+</ng-template>
+<ng-template #elseblock
+  ><h2>Something went wrong when loading.</h2></ng-template
+>
