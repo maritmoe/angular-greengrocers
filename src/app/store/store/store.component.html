@@ -1,7 +1,13 @@
 <ng-template ngIf="items; else elseblock">
+  <label for="filter">Filter: </label>
+  <select #filter (change)="updateFilterBy(filter.value)">
+    <option value="all">Show all</option>
+    <option value="fruit">Fruits</option>
+    <option value="vegetable">Vegetables</option>
+  </select>
   <ul class="item-list store--item-list">
     <app-store-item
-      *ngFor="let item of items | async"
+      *ngFor="let item of filteredItems | async"
       [item]="item"
       (add)="addItemToCart($event)"
     ></app-store-item>
